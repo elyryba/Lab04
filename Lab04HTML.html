@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Image</title>
+</head>
+<body>
+<input type="file" id="imageUpload" accept="image/*">
+<button onclick="showImageDetails()">Add</button>
+<script>
+        function showImageDetails() {
+            const input = document.getElementById('imageUpload');
+            if (input.files && input.files[0]) {
+                const name = input.files[0].name;
+                const size = input.files[0].size;
+                alert(`Image Name: ${name}, Image Size: ${size} bytes`);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////// NEW FILE BELOW, JUST TWO OPTIONS CREATED HERE
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+</head>
+<body>
+
+<!-- Search Box and Button -->
+<input type="text" id="searchBox" placeholder="Enter search term">
+<button onclick="performSearch()">Search</button>
+
+<!-- Table to Display Search Results -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Type</th>
+    </tr>
+    </thead>
+    <tbody id="searchResults">
+    <!-- Sample data -->
+    <tr>
+        <td>1</td>
+        <td>Example</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Document</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Image</td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    function performSearch() {
+        const searchQuery = document.getElementById('searchBox').value.toLowerCase();
+        const tbody = document.getElementById('searchResults');
+        tbody.innerHTML = ''; // Clear current results
+
+        // Example data - this should be replaced or supplemented with actual search logic
+        const data = [
+            { id: 1, type: 'Example' },
+            { id: 2, type: 'Document' },
+            { id: 3, type: 'Image' }
+        ];
+
+        // Filter data based on search query (case-insensitive)
+        const filteredData = data.filter(item => item.type.toLowerCase().includes(searchQuery));
+
+        // Dynamically add filtered results to the table
+        filteredData.forEach(item => {
+            const row = `<tr><td>${item.id}</td><td>${item.type}</td></tr>`;
+            tbody.innerHTML += row;
+        });
+
+        // Handle case where no results are found
+        if(filteredData.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="2">No results found</td></tr>';
+        }
+    }
+</script>
+
+</body>
+</html>
